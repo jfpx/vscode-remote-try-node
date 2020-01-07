@@ -132,5 +132,61 @@ def update_archive_data(import_path=None, resume=None):
     write_links_index(out_dir=OUTPUT_DIR, links=all_links, finished=True)
 
 
+
+
+def y_main(url):
+
+    ### Handle CLI arguments
+    #     ./archive bookmarks.html
+    #     ./archive 1523422111.234
+    resume = None
+    ### Set up output folder
+    if not os.path.exists(OUTPUT_DIR):
+        os.makedirs(OUTPUT_DIR)
+
+
+    ### Handle ingesting urls from a remote file/feed
+    # (e.g. if an RSS feed URL is used as the import path) 
+    if url and any(url.startswith(s) for s in ('http://', 'https://', 'ftp://')):
+        import_path = save_remote_source(url)
+
+    ### Run the main archive update process
+    """The main ArchiveBox entrancepoint. Everything starts here."""
+
+    import datetime
+    links = [{'url': url,
+                'timestamp': str(datetime.now().timestamp()),
+                'title': None,
+                'tags': '',
+                'sources': [import_path]}]
+    log_archiving_started(len(links), resume)
+    idx, link = 0, 0
+    try:
+        for idx, link in enumerate(links_after_timestamp(links, resume)):
+            link_dir = os.path.join(ARCHIVE_DIR, link['timestamp'])
+            archive_link(link_dir, link)
+
+    except KeyboardInterrupt:
+        log_archiving_paused(len(links), idx, link and link['timestamp'])
+        raise SystemExit(0)
+
+    except:
+        print()
+        raise    
+
+    log_archiving_finished(len(links))
+
+    # Step 4: Re-write links index with updated titles, icons, and resources
+    all_links, _ = load_links_index(out_dir=OUTPUT_DIR)
+    write_links_index(out_dir=OUTPUT_DIR, links=all_links, finished=True)
+
+
+
 if __name__ == '__main__':
-    main(*sys.argv)
+    if len(sys.argv) > 2:
+        if sys.argv[1] == "y":
+            for url in sys.argv[2].split(";"):
+                y_main(url)
+    else:
+        main(*sys.argv)
+
