@@ -1,0 +1,66 @@
+# Example config file for ArchiveBox: The self-hosted internet archive.
+# Copy this file to ~/.ArchiveBox.conf before editing it.
+# Config file is in both Python and .env syntax (all strings must be quoted).
+# For documentation, see:
+#    https://github.com/pirate/ArchiveBox/wiki/Configuration
+
+################################################################################
+## General Settings
+################################################################################
+
+#OUTPUT_DIR="output"
+#OUTPUT_PERMISSIONS=755
+#ONLY_NEW=False
+#TIMEOUT=60
+#MEDIA_TIMEOUT=3600
+#TEMPLATES_DIR="archivebox/templates"
+#FOOTER_INFO="Content is hosted for personal archiving purposes only. Contact server owner for any takedown requests."
+
+
+################################################################################
+## Archive Method Toggles
+################################################################################
+
+#FETCH_TITLE=True
+#FETCH_FAVICON=True
+#FETCH_WGET=True
+#FETCH_WARC=True
+#FETCH_PDF=True
+#FETCH_SCREENSHOT=True
+#FETCH_DOM=True
+#FETCH_GIT=True
+#FETCH_MEDIA=False
+#SUBMIT_ARCHIVE_DOT_ORG=True
+
+
+################################################################################
+## Archive Method Options
+################################################################################
+
+#CHECK_SSL_VALIDITY=True
+#FETCH_WGET_REQUISITES=True
+#RESOLUTION="1440,900"
+#WGET_USER_AGENT="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.75 Safari/537.36"
+#CHROME_USER_AGENT="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.75 Safari/537.36"
+#GIT_DOMAINS="github.com,bitbucket.org,gitlab.com"
+#COOKIES_FILE="path/to/cookies.txt"
+#CHROME_USER_DATA_DIR="~/.config/google-chrome/Default"
+
+
+################################################################################
+## Shell Options
+################################################################################
+
+#USE_COLOR=True
+#SHOW_PROGRESS=True
+
+
+################################################################################
+## Dependency Options
+################################################################################
+
+#CURL_BINARY="curl"
+#GIT_BINARY="git"
+#WGET_BINARY="wget"
+#YOUTUBEDL_BINARY="youtube-dl"
+#CHROME_BINARY="chromium-browser"
