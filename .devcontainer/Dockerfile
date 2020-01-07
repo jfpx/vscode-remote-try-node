@@ -89,7 +89,7 @@ RUN  mkdir -p /home/$USERNAME/Downloads \
 # Install the ArchiveBox repository and pip requirements
 COPY . /home/$USERNAME/app
 RUN mkdir -p /data \
-    && chown -R $USERNAME:$USERNAME /data \
+    && chown -R $USER_UID:$USER_GID /data \
     && ln -s /data /home/$USERNAME/app/archivebox/output \
     && ln -s /home/$USERNAME/app/bin/* /bin/ \
     && ln -s /home/$USERNAME/app/bin/archivebox /bin/archive \
