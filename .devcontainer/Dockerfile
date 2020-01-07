@@ -81,9 +81,8 @@ ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
 # Install puppeteer so it's available in the container.
 RUN npm i puppeteer
 
-# Add user so we don't need --no-sandbox.  groupadd -r $USERNAME && 
-RUN useradd -r -g $USER_UID -G audio,video $USERNAME \
-    && mkdir -p /home/$USERNAME/Downloads \
+# Add user so we don't need --no-sandbox.  groupadd -r $USERNAME && useradd -r -g $USER_UID -G audio,video $USERNAME \
+RUN  mkdir -p /home/$USERNAME/Downloads \
     && chown -R $USER_UID:$USER_GID /home/$USERNAME \
     && chown -R $USER_UID:$USER_GID /node_modules
 
