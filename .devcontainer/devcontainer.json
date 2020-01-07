@@ -1,10 +1,10 @@
 {
-    "name": "Node.js Sample",
+    "name": "Node.js ArchiveBox",
     "dockerFile": "Dockerfile",
 
     // Use 'appPort' to create a container with published ports. If the port isn't working, be sure
     // your server accepts connections from all interfaces (0.0.0.0 or '*'), not just localhost.
-    "appPort": [3000],
+    //"appPort": [3000],
 
     // Comment out the next line to run as root instead.
     "remoteUser": "node",
@@ -12,14 +12,40 @@
     // Use 'settings' to set *default* container specific settings.json values on container create. 
     // You can edit these settings after create using File > Preferences > Settings > Remote.
     "settings": {
-        "terminal.integrated.shell.linux": "/bin/bash"
-    },
+		"terminal.integrated.shell.linux": "/bin/bash",
+		"workbench.colorTheme": "Night Owl Light (No Italics)",
+		"bracketPairColorizer.forceIterationColorCycle": true,
+		"python.pythonPath": "/usr/local/bin/python",
+		"python.linting.enabled": true,
+		"python.linting.pylintEnabled": true,
+		"python.linting.pylintPath": "/usr/local/bin/pylint"
+	},
 
     // Specifies a command that should be run after the container has been created.
-    "postCreateCommand": "yarn install",
+    //"postCreateCommand": "yarn install",
 
-    // Add the IDs of extensions you want installed when the container is created in the array below.
-    "extensions": [
-        "dbaeumer.vscode-eslint"
-    ]
+	"mounts": [
+		"source=/mnt,target=/mnt,type=bind,consistency=cached",
+		"source=python-extensions-volume,target=/home/vscode/.vscode-server/extensions,type=volume"
+	],
+
+	// Install flask and any other dependencies
+	"postCreateCommand": "sudo pip install -r requirements.txt && sudo chown -R vscode /workspaces",
+
+	// Add the IDs of extensions you want installed when the container is created in the array below.
+	"extensions": [
+        "dbaeumer.vscode-eslint",
+		"ms-python.python",
+		"shardulm94.trailing-spaces",
+		"njpwerner.autodocstring",
+		"formulahendry.code-runner",
+		"redhat.vscode-yaml",
+		"aaron-bond.better-comments",
+		"eamodio.gitlens",
+		"vscode-icons-team.vscode-icons",
+		"sdras.night-owl",
+		"johnpapa.vscode-peacock",
+		"ms-python.anaconda-extension-pack"
+	]
+    
 }
