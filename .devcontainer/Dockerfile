@@ -54,7 +54,9 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 
-RUN wget https://yt-dl.org/downloads/latest/youtube-dl -O /usr/bin/youtube-dl \
+RUN apt update \
+    && apt install ffmpeg \
+    && wget https://yt-dl.org/downloads/latest/youtube-dl -O /usr/bin/youtube-dl \
     && chmod a+rx /usr/bin/youtube-dl
 
 RUN apt-get update \
