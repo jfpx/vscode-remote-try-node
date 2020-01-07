@@ -132,7 +132,7 @@ def update_archive_data(import_path=None, resume=None):
     write_links_index(out_dir=OUTPUT_DIR, links=all_links, finished=True)
 
 
-
+from datetime import datetime
 
 def y_main(url):
 
@@ -153,7 +153,6 @@ def y_main(url):
     ### Run the main archive update process
     """The main ArchiveBox entrancepoint. Everything starts here."""
 
-    import datetime
     links = [{'url': url,
                 'timestamp': str(datetime.now().timestamp()),
                 'title': None,
