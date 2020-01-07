@@ -116,7 +116,7 @@ ENV LANG=C.UTF-8 \
     CHROME_BINARY=google-chrome-unstable \
     OUTPUT_DIR=/data \
     MEDIA_TIMEOUT=36000 \
-    TIMEOUT=36000 \
+    TIMEOUT=60 \
     FETCH_MEDIA=True \ 
     CHECK_SSL_VALIDITY=False
 
@@ -128,4 +128,4 @@ WORKDIR /home/$USERNAME/app
 ENV DEBIAN_FRONTEND=dialog
 
 ENTRYPOINT ["dumb-init", "--"]
-CMD ["python3", "/bin/archive"]
+CMD ["python3", "/home/$USERNAME/app/archivebox/archive.py"]
