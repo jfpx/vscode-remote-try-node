@@ -5,10 +5,12 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "type": "node",
+            "name": "Python: Current File",
+            "type": "python",
             "request": "launch",
-            "name": "Launch Program",
-            "program": "${workspaceFolder}/server.js"
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "args": ["y", "https://www.youtube.com/watch?v=C0DPdy98e4c"]
         }
     ]
 }
