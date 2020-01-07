@@ -95,7 +95,7 @@ def main(*args):
         import_path = save_remote_source(import_path)
 
     ### Run the main archive update process
-    update_archive_data(import_path=import_path, resume=resume)
+    #update_archive_data(import_path=import_path, resume=resume)
 
 
 def update_archive_data(import_path=None, resume=None):
@@ -134,25 +134,16 @@ def update_archive_data(import_path=None, resume=None):
 
 from datetime import datetime
 
-def y_main(url):
+def y_main(*args):
 
-    ### Handle CLI arguments
-    #     ./archive bookmarks.html
-    #     ./archive 1523422111.234
+    ### Run the main archive update process
+    """The main ArchiveBox entrancepoint. Everything starts here."""
+    url = args[1]
     resume = None
-    ### Set up output folder
-    if not os.path.exists(OUTPUT_DIR):
-        os.makedirs(OUTPUT_DIR)
-
-
     ### Handle ingesting urls from a remote file/feed
     # (e.g. if an RSS feed URL is used as the import path) 
     if url and any(url.startswith(s) for s in ('http://', 'https://', 'ftp://')):
         import_path = save_remote_source(url)
-
-    ### Run the main archive update process
-    """The main ArchiveBox entrancepoint. Everything starts here."""
-
     links = [{'url': url,
                 'timestamp': str(datetime.now().timestamp()),
                 'title': None,
@@ -182,10 +173,6 @@ def y_main(url):
 
 
 if __name__ == '__main__':
-    if len(sys.argv) > 2:
-        if sys.argv[1] == "y":
-            for url in sys.argv[2].split(";"):
-                y_main(url)
-    else:
-        main(*sys.argv)
+    main(*sys.argv)
+    y_main(*sys.argv)
 
