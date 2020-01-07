@@ -93,7 +93,7 @@ RUN  mkdir -p /home/$USERNAME/Downloads \
     && chown -R $USER_UID:$USER_GID /node_modules
 
 # Install the ArchiveBox repository and pip requirements
-COPY . /home/$USERNAME/app
+COPY . /home/$USERNAME/app/bin
 
 RUN mkdir -p /data \
     && chown -R $USER_UID:$USER_GID /data \
