@@ -94,7 +94,7 @@ RUN  mkdir -p /home/$USERNAME/Downloads \
 
 # Install the ArchiveBox repository and pip requirements
 COPY ../archivebox /home/$USERNAME/app/archivebox
-COPY ../archivebox /home/$USERNAME/app/bin/archivebox
+COPY ../bin /home/$USERNAME/app/bin
 
 RUN mkdir -p /data \
     && chown -R $USER_UID:$USER_GID /data \
@@ -128,4 +128,4 @@ WORKDIR /home/$USERNAME/app
 ENV DEBIAN_FRONTEND=dialog
 
 ENTRYPOINT ["dumb-init", "--"]
-CMD ["python3", "/bin/archive/archive.py"]
+CMD ["python3", "/bin/archive"]
